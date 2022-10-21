@@ -1,9 +1,12 @@
 package entity;
 
 import java.awt.image.BufferedImage;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 
 import javax.imageio.ImageIO;
 
@@ -14,6 +17,7 @@ public class Entity {
     
     private BufferedImage image;
 
+    // load a spritesheet
     public BufferedImage loadImage(String path) {
 
         try {
@@ -27,9 +31,19 @@ public class Entity {
         return image;
     }
 
+    // obtain a sprite from a spritesheet
     public BufferedImage grabSprite(int col, int row, int width, int height, BufferedImage spriteSheet) {
-        BufferedImage sprite = spriteSheet.getSubimage((col*24) - 24, (row *24)-24, width, height);
+        BufferedImage sprite = spriteSheet.getSubimage((col*32) - 32, (row *32)-32, width, height);
         return sprite;
+    }
+
+    // Flip an image horizontally (somehow)
+    public BufferedImage flip(BufferedImage entityImage) {
+        AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+        tx.translate(-entityImage.getWidth(null), 0);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        entityImage = op.filter(entityImage, null);
+        return entityImage;
     }
 
     

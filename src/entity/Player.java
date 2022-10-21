@@ -5,12 +5,15 @@ import main.InputHandler;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+
 public class Player extends Entity {
     
     GamePanel gp;
     InputHandler playerInput;
-    public BufferedImage playerImage;
-    public BufferedImage playerSpriteSheet;
+    public BufferedImage playerImage, idleLeft, idleRight;
+    public BufferedImage playerSpriteSheet, extraSpriteSheet;
+    String direction;
+    
     
     public Player(GamePanel gp, InputHandler playerInput) {
         this.gp = gp;
@@ -24,23 +27,27 @@ public class Player extends Entity {
         
         x = 100;
         y = 100;
-        speed = 4;
+        speed = 2;
     }
 
     public void getPlayerImage(){
-        playerSpriteSheet = loadImage("res/megaman/megamanspritesheet.png");
+        playerSpriteSheet = loadImage("res/megaman/32pxmegamanspritesheet.png");
+        
+        idleLeft = grabSprite(1, 1, gp.tileSize, gp.tileSize, playerSpriteSheet);
+        idleRight = flip(grabSprite(1, 1, gp.tileSize, gp.tileSize, playerSpriteSheet));
+
+
     }
 
     public void update() {
-
-        playerImage = grabSprite(1, 1, gp.tileSize, gp.tileSize, playerSpriteSheet);
         
         if(playerInput.leftPress == true) {
             x -= speed;
-            playerImage = grabSprite(1, 1, gp.tileSize, gp.tileSize, playerSpriteSheet);
+            playerImage = idleLeft;
         }
         else if (playerInput.rightPress == true) {
             x += speed;
+            playerImage = idleRight;
 
         }
     }
@@ -48,5 +55,7 @@ public class Player extends Entity {
     public void draw(Graphics2D g2) {
         
         g2.drawImage(playerImage, x, y, gp.tileSize, gp.tileSize, null);
+        
+
     }
 }

@@ -11,10 +11,10 @@ import entity.Player;
 public class GamePanel extends JPanel implements Runnable {
     
     final int originalTileSize = 8; // 8 x 8 tiles
-    final int scale = 3;
+    final int scale = 4;
     
     public final int tileSize = scale * originalTileSize;
-    final int screenCol = 32;
+    final int screenCol = 8;
 
     final int screenWidth = tileSize * screenCol; // 768 pixels
     final int screenHeight = screenWidth / 4 * 3; // 4:3 aspect ratio (576 pixels)

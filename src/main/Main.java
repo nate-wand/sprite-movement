@@ -15,7 +15,7 @@ public class Main {
         window.pack();
 
         window.setLocationRelativeTo(null);
-        // window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setVisible(true);
         gamePanel.startGameThread();
     }
