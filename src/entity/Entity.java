@@ -14,8 +14,11 @@ public class Entity {
     
     public int x, y;
     public int speed;
+    public int spriteCounter= 0;
+    public int spriteNum = 1;
     
     private BufferedImage image;
+    public BufferedImage spriteSheet;
 
     // load a spritesheet
     public BufferedImage loadImage(String path) {
@@ -32,8 +35,8 @@ public class Entity {
     }
 
     // obtain a sprite from a spritesheet
-    public BufferedImage grabSprite(int col, int row, int width, int height, BufferedImage spriteSheet) {
-        BufferedImage sprite = spriteSheet.getSubimage((col*32) - 32, (row *32)-32, width, height);
+    public BufferedImage grabSprite(int col, int row, int width, int height, BufferedImage spriteSheetparam) {
+        BufferedImage sprite = spriteSheetparam.getSubimage((col*32) - 32, (row *32)-32, width, height);
         return sprite;
     }
 
