@@ -34,7 +34,7 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage(){
-        spriteSheet = loadImage("res/megaman/32pxmegamanspritesheet.png");
+        spriteSheet = loadImage("sprite-movement/res/megaman/32pxmegamanspritesheet.png");
         
         leftIdle1 = grabSprite(1, 1, gp.tileSize, gp.tileSize, spriteSheet);
         leftIdle2 = grabSprite(2, 1, gp.tileSize, gp.tileSize, spriteSheet);
